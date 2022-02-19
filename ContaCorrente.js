@@ -2,17 +2,29 @@ export class ContaCorrente {
     agencia;
     #saldo = 0;
   
-    sacar(valor) {
-      if (this.#saldo >= valor)
-      this.#saldo -= valor;
-      console.log("valor sacado: " + valor,"||saldo atual: " + this.#saldo);
-  
+    Saldo() {
+      console.log("saldo atual: " + this.#saldo)
     }
   
-    depositar(valor) {
-      if (valor > 0)
+    sacar(valor) {
+      if (this.#saldo >= valor) {
+          this.#saldo -= valor;
+          return valor;
+      }
+
+  }
+
+  depositar(valor) {
+      if(valor <= 0) {
+          return;
+      }
       this.#saldo += valor;
-      console.log("valor depositado: " + valor,"||saldo atual: " + this.#saldo);
+  }
+
+    transferir(valor,conta) {
+      const valorSacado = this.sacar(valor)
+      conta.depositar(valorSacado)
+      console.log("valor transferido: " + valor,"||saldo atual: " + this.#saldo);
     }
   }
   
