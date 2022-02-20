@@ -1,9 +1,21 @@
 export class ContaCorrente {
     agencia;
+    
+    #cliente;
     #saldo = 0;
   
-    Saldo() {
-      console.log("saldo atual: " + this.#saldo)
+    set cliente(novoValor){
+      if(novoValor instanceof Cliente) {
+        this.#cliente = novoValor;
+      }
+    }
+
+    get cliente() {
+      return this.#cliente;
+    }
+
+    get saldo() {
+      return this.#saldo;
     }
   
     sacar(valor) {
